@@ -7,11 +7,13 @@ import database.db_connector as db
 app = Flask(__name__)
 db_connection = db.connect_to_database()
 
-# Routes 
+
+# Routes
 
 @app.route('/')
 def root():
     return render_template("main.j2")
+
 
 @app.route('/bsg-people')
 def bsg_people():
@@ -19,6 +21,7 @@ def bsg_people():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template("bsg.j2", bsg_people=results)
+
 
 # Listener
 
